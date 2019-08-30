@@ -1,0 +1,15 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "QuickBooks") do |sheet|
+  # this is the head row of your spreadsheet
+  sheet.add_row [
+    "Name", "Description"
+  ]
+
+  # each user is a row on your spreadsheet
+  @reports.each do |key, value|
+    sheet.add_row [
+      value[:name], value[:description]
+    ]
+  end
+end

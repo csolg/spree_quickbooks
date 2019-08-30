@@ -1,0 +1,30 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:reports), spree.admin_reports_url %> /
+  <%= "Export to QuickBooks" %>
+<% end %>
+
+<table class="table table-bordered admin-report" data-hook="export_to_quickbooks">
+  <thead>
+    <tr>
+      <th><%= "Product/Service Name" %></th>
+      <th><%= "SKU" %></th>
+      <th><%= "Type" %></th>
+      <th><%= "Sales Description" %></th>
+      <th><%= "Sales Price/Rate" %></th>
+      <th><%= "Income Account" %></th>
+      <th><%= "Purchase Description" %></th>
+      <th><%= "Purchase Cost" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.sku %></td>
+        <td><%= product.tax_category.try(:name) %></td>
+        <td><%= product.description %></td>
+        <td><%= humanized_money_with_symbol product.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
