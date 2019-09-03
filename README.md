@@ -10,16 +10,30 @@ Introduction goes here.
   ```
 
 2. Install the gem using Bundler:
-  ```ruby
+
+  ```shell
   bundle install
   ```
 
-3. Copy & run migrations
+3. Add to app/helpers/application_helper.rb:
+
   ```ruby
+  require 'money-rails/helpers/action_view_extension'
+
+  module ApplicationHelper
+    include MoneyRails::ActionViewExtension
+    ...
+  end
+  ```
+
+
+4. Copy & run migrations
+  ```shell
+  bundle exec rails g money_rails:initializer
   bundle exec rails g spree_quickbooks:install
   ```
 
-4. Restart your server
+5. Restart your server
 
   If your server was running, restart it so that it can find the assets properly.
 
