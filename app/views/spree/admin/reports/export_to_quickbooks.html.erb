@@ -3,6 +3,10 @@
   <%= "Export to QuickBooks" %>
 <% end %>
 
+<a class="btn btn-primary pull-right" href="<%= export_to_quickbooks_admin_reports_path %>.csv">Export to CSV</a>
+<br>
+<br>
+
 <table class="table table-bordered admin-report" data-hook="export_to_quickbooks">
   <thead>
     <tr>
@@ -11,9 +15,6 @@
       <th><%= "Type" %></th>
       <th><%= "Sales Description" %></th>
       <th><%= "Sales Price/Rate" %></th>
-      <th><%= "Income Account" %></th>
-      <th><%= "Purchase Description" %></th>
-      <th><%= "Purchase Cost" %></th>
     </tr>
   </thead>
   <tbody>
