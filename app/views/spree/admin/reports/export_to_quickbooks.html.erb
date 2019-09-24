@@ -13,19 +13,23 @@
       <th><%= "Product/Service Name" %></th>
       <th><%= "SKU" %></th>
       <th><%= "Type" %></th>
+      <th><%= "Inventory" %></th>
       <th><%= "Sales Description" %></th>
       <th><%= "Sales Price/Rate" %></th>
     </tr>
   </thead>
   <tbody>
     <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.sku %></td>
-        <td><%= product.tax_category.try(:name) %></td>
-        <td><%= product.description %></td>
-        <td><%= humanized_money_with_symbol product.price %></td>
-      </tr>
+      <% product.variants.each do |variant| %>
+        <tr>
+          <td><%= "#{variant.name} (#{variant.options_name})" %></td>
+          <td><%= variant.sku %></td>
+          <td><%= variant.tax_category.try(:name) %></td>
+          <td><%= variant.total_on_hand %></td>
+          <td><%= variant.description %></td>
+          <td><%= humanized_money_with_symbol variant.price %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

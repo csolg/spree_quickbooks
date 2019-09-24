@@ -32,23 +32,25 @@ Spree::Admin::ReportsController.class_eval do
 
     @products = Spree::Product.all
 
-    attributes = %w{name sku type description price}
-
-    csv_output = CSV.generate(headers: true) do |csv|
-      csv << attributes
-
-      @products.each do |product|
-        csv << [product.name,
-                product.sku,
-                product.tax_category.try(:name),
-                product.description,
-                product.price]
-      end
-    end
-
     respond_to do |format|
       format.html
-      format.csv { send_data csv_output, filename: "QuickBooks-#{Date.today}.csv" }
+      format.csv do
+        attributes = %w{name sku type description price}
+
+        csv_output = CSV.generate(headers: true) do |csv|
+          csv << attributes
+
+          @products.each do |product|
+            csv << [product.name,
+                    product.sku,
+                    product.tax_category.try(:name),
+                    product.description,
+                    product.price]
+          end
+        end
+
+        send_data csv_output, filename: "QuickBooks-#{Date.today}.csv"
+      end
     end
 
     # @totals = {}
