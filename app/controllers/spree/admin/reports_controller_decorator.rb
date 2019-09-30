@@ -41,11 +41,13 @@ Spree::Admin::ReportsController.class_eval do
           csv << attributes
 
           @products.each do |product|
-            csv << [product.name,
-                    product.sku,
-                    product.tax_category.try(:name),
-                    product.total_on_hand,
-                    product.price]
+            product.variants.each do |variant|
+              csv << [variant.name,
+                      variant.sku,
+                      variant.tax_category.try(:name),
+                      variant.total_on_hand,
+                      variant.price]
+            end
           end
         end
 
