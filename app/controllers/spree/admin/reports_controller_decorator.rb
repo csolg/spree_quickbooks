@@ -35,7 +35,7 @@ Spree::Admin::ReportsController.class_eval do
     respond_to do |format|
       format.html
       format.csv do
-        attributes = %w{name sku type description price}
+        attributes = %w{name sku type inventory price}
 
         csv_output = CSV.generate(headers: true) do |csv|
           csv << attributes
@@ -44,7 +44,7 @@ Spree::Admin::ReportsController.class_eval do
             csv << [product.name,
                     product.sku,
                     product.tax_category.try(:name),
-                    product.description,
+                    product.total_on_hand,
                     product.price]
           end
         end

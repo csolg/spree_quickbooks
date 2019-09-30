@@ -14,7 +14,6 @@
       <th><%= "SKU" %></th>
       <th><%= "Type" %></th>
       <th><%= "Inventory" %></th>
-      <th><%= "Sales Description" %></th>
       <th><%= "Sales Price/Rate" %></th>
     </tr>
   </thead>
@@ -26,7 +25,6 @@
           <td><%= variant.sku %></td>
           <td><%= variant.tax_category.try(:name) %></td>
           <td><%= variant.total_on_hand %></td>
-          <td><%= variant.description %></td>
           <td><%= humanized_money_with_symbol variant.price %></td>
         </tr>
       <% end %>
